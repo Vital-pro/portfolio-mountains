@@ -1,10 +1,17 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
+  // ? Чтобы при перезагрузке страницы она начиналась с самого верха
+  window.onbeforeunload = function () {
+    window.scrollTo(0, 0);
+    // window.location.reload(true);
+  };
+
   function showBoxTitleByTime(selector, time) {
-    setTimeout(() => {
+    const loadHello = setTimeout(() => {
       document.querySelector(selector).classList.add('show');
+      clearTimeout(loadHello);
     }, time);
   }
-  showBoxTitleByTime('.parallax__box', 1000);
+
 
   $(window).scroll(function (event) {
     var s = $(this).scrollTop(); //px, по высоте, прокрученные в окне браузера
@@ -27,15 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var o = 1 - (1 / 100) * p_b;
     // console.log('o: будущая НЕпрозрачность', o);
 
-    // if (s > 0) {
-    //   document.querySelector('svg').classList.remove('show');
-    // } else {
-    //   document.querySelector('svg').classList.add('show');
-    // }
+    //!  теперь приступаем непосредственно к Parallax
 
-
-    //? теперь приступаем непосредственно к Parallax
-    //
     var z_1 = 1 + (w / 10000) * p_b;
     $('.parallax__fog').css('transform', 'scale(' + z_1 + ')'); //? движение тумана
     $('.parallax__fog').css('opacity', o); //? прозрачность тумана
@@ -58,96 +58,280 @@ document.addEventListener('DOMContentLoaded', () => {
       'translate3d(' + hr_2 + 'px, 0, 0) scale(' + z_4 + ')'
     ); //? гора слева
   });
-});
 
-//************************ */
-
-// Функция для плавного скроллинга до указанного элемента
-function scrollTo(element, delay) {
-  setTimeout(function() {
-    window.scrollTo({
-      top: element.offsetTop,
-      behavior: 'smooth'
-    });
-  }, delay);
-}
-
-// Функция для остановки скроллинга на указанное количество секунд
-function pauseScrolling(duration) {
-  return new Promise(function(resolve) {
-    setTimeout(resolve, duration * 1000);
-  });
-}
-
-// Функция, которая выполняет автоматический скроллинг страницы
-async function autoScroll() {
-  while (true) {
-    // Прокрутка до header, остановка на 3 секунды
-    scrollTo(document.querySelector('.content'), 2000);
-    await pauseScrolling(3); // ! .then здесь нужен?
-
-    // Проверка, был ли скролл страницы вручную вернут наверх
-    if (window.scrollY === 0) {
-      continue; // Повтор процесса скроллинга сначала
-    }
-
-    // Прокрутка до середины страницы, остановка на 5 секунд
-    scrollTo(document.documentElement.scrollHeight / 2, 0);
-    await pauseScrolling(5);
-
-    // Прокрутка до конца страницы
-    scrollTo(document.documentElement.scrollHeight, 0);
-  }
-}
-
-// Функция, которая будет вызвана после загрузки страницы
-window.addEventListener('load', function() {
-  // Установка скролла страницы вверх
-  window.scrollTo(0, 0);
-
-  // Запуск автоматического скроллинга через 2 секунды после загрузки страницы
-  setTimeout(autoScroll, 2000);
-});
-
-//*********************** */
+  //! start scrolling
 
 
-function scrollToSection() {
-  // Сначала прокручиваем до элемента content
-  window.scrollTo({
-    top: document.querySelector('.content').offsetTop,
-    behavior: 'smooth',
-  });
 
-  // После прокрутки до header, останавливаемся на 3 секунды
-  setTimeout(function () {
-    // Затем прокручиваем до середины страницы
-    window.scrollTo({
-      top: document.body.scrollHeight / 2,
-      behavior: 'smooth',
-    });
-
-    // После прокрутки до середины, останавливаемся на 5 секунд
-    setTimeout(function () {
-      // Затем прокручиваем до конца страницы
-      window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth',
-      });
-
-      // Проверяем, является ли текущая позиция скролла страницы верхней
-      if (window.scrollY === 0) {
-        // Если текущая позиция верхняя, то повторяем весь процесс скроллинга
-        scrollToSection();
+  function name() {
+    let intervalId1 = setInterval(function () {
+      window.scrollBy(0, 10);
+      if (scrollY >= 20) {
+        clearInterval(intervalId1);
+        clearTimeout(h);
       }
-    }, 5000);
-  }, 3000);
-}
+    }, 40);
+  }
 
-// Запускаем автоматический скроллинг через 2 секунды после загрузки страницы
-setTimeout(scrollToSection, 2000);
+  function name1() {
+    let intervalId2 = setInterval(function () {
+      window.scrollBy(0, 10);
+      // if (scrollY >= 80) {
+        if (scrollY >= document.body.scrollHeight / 8) {
+          clearInterval(intervalId2);
+          clearTimeout(hh);
+        }
+    }, 50);
+  }
 
-// При перезагрузке страницы, прокручиваем страницу в самый верх
-window.onbeforeunload = function () {
-  window.scrollTo(0, 0);
-};
+  function name2() {
+    let intervalId3 = setInterval(function () {
+      window.scrollBy(0, 5);
+      // window.scrollTo({
+      //   top: document.querySelector('.content').offsetTop,
+      //   behavior: 'smooth',
+      // });
+      if (scrollY >= document.querySelector('.content').offsetTop - 5) {
+        clearInterval(intervalId3);
+          clearTimeout(hhh);
+
+      } 
+    }, 15);
+  }
+
+  showBoxTitleByTime('.parallax__box', 1000);
+
+  let h = setTimeout(name, 3800);
+  let hh = setTimeout(name1, 4800);
+  let hhh = setTimeout(name2, 5000);
+
+  console.log(window.scrollY); //* на сколько пикселей страница пролистана вниз
+  
+
+  //* * Template start* * * * * * * * *
+  // var прокрутка = setInterval(function () {
+  //   window.scrollBy(0, 30);
+  // }, 40);
+
+  // function myScroll() {
+  //   window.scrollBy({
+  //     top: 60,
+  //     behavior: 'smooth',
+  //   }); //*1
+  // }
+
+  // function myScroll1() {
+  //   window.scrollBy({
+  //     top: 360,
+  //     behavior: 'smooth',
+  //   }); //*2
+  // }
+  // function myScroll2() {
+  //   window.scrollTo({
+  //     top: document.querySelector('.content').offsetTop,
+  //     behavior: 'smooth',
+  //   }); //*3
+  // }
+  // setTimeout(myScroll, 4000); //*1
+  // setTimeout(myScroll1, 4500); //*2
+  // setTimeout(myScroll2, 4500); //*3
+
+  // setTimeout(function() {
+  //   let h = setInterval(() => {
+  //     if(scrollY <= 760)
+  //     window.scrollBy(0, 10)
+  //   },10)
+  // },5000)
+
+  // setTimeout(myScroll2, 5000); //*3
+
+  // let timerId = setTimeout(() => {
+  //   window.scrollTo({
+  //     top: document.querySelector('.content').offsetTop,
+  //     behavior: 'smooth',
+  //   });
+  // }, 6000); //*2
+
+  // function fr() {
+  //   let d = setInterval(() => {
+  //     window.scrollBy(0, 30);
+  //     if (scrollY === 750) {
+  //       clearInterval(d);
+  //     }
+  //   }, 30);
+  // }
+  // setTimeout(fr, 9000); //*3
+
+  // window.scrollTo(0, document.body.scrollHeight);
+
+  // function start() {
+  //   window.scrollBy(0, 30);
+  //   if (scrollY >= 760) {
+  //     clearInterval(d);
+  //   }
+  // }
+  // let d = setInterval(start, 30);
+
+  // function start() {
+  //   window.scrollBy(0, 30);
+  //   if (scrollY >= 760) {
+  //     clearInterval(d);
+  //   }
+  // }
+
+  //! finish scrolling
+
+  ///? 1 variant
+  // function printNumbers(from, to){
+  //   setTimeout(function tick() {
+  //     console.log(from)
+  //     from++
+  //     if(from <= to) {
+  //       setTimeout(tick, 1000)
+  //     }
+  //   }, 1000)
+  // }
+  // printNumbers(5, 8);
+
+  ///? 2 variant
+  // function printNumbers(from, to) {
+  //   setTimeout(function tick() {
+  //     console.log(from);
+  //     from++;
+  //     if (from > to) {
+  //       return;
+  //     }
+  //     let c = setTimeout(tick, 1000);
+  //   }, 1000);
+  // }
+  // printNumbers(5, 8);
+
+  // function showNum(num) {
+  //   console.log(num);
+  //   let d = setTimeout(showNum, 1000, ++num);
+  //   if(num === 4) {
+  //     clearTimeout(d)
+  //   }
+  // }
+
+  // setTimeout(showNum, 1000, 1)
+
+  // ? Start Это новый вариант, нужно с ним познакомиться, рассмотреть
+  // ? https://gist.github.com/tyleryoungblood/10a8084bf5f166ed7fe33b0436bbd565
+  /**
+   * Will gracefuly scroll the page
+   * This function will scroll the page using
+   * an `ease-in-out` effect.
+   *
+   * You can use it to scroll to a given element, as well.
+   * To do so, pass the element instead of a number as the position.
+   * Optionally, you can pass a `queryString` for an element selector.
+   *
+   * The default duration is half a second (500ms)
+   *
+   * This function returns a Promise that resolves as soon
+   * as it has finished scrolling. If a selector is passed and
+   * the element is not present in the page, it will reject.
+   *
+   * EXAMPLES:
+   *
+   * ```js
+   * window.scrollPageTo('#some-section', 2000);
+   * window.scrollPageTo(document.getElementById('some-section'), 1000);
+   * window.scrollPageTo(500); // will scroll to 500px in 500ms
+   * ```
+   *
+   * @returns {Promise}
+   * @param {HTMLElement|Number|Selector} Target
+   * @param {Number} Duration [default=500]
+   *
+   * Inspired by @andjosh's work
+   *
+  //  */
+  // function scrollPageTo(to, duration = 500) {
+  //   //t = current time
+  //   //b = start value
+  //   //c = change in value
+  //   //d = duration
+  //   const easeInOutQuad = function (t, b, c, d) {
+  //     t /= d / 2;
+  //     if (t < 1) return (c / 2) * t * t + b;
+  //     t--;
+  //     return (-c / 2) * (t * (t - 2) - 1) + b;
+  //   };
+
+  //   return new Promise((resolve, reject) => {
+  //     const element = document.scrollingElement;
+
+  //     if (typeof to === 'string') {
+  //       to = document.querySelector(to) || reject();
+  //     }
+  //     if (typeof to !== 'number') {
+  //       to = to.getBoundingClientRect().top + element.scrollTop;
+  //     }
+
+  //     let start = element.scrollTop,
+  //       change = to - start,
+  //       currentTime = 0,
+  //       increment = 20;
+
+  //     const animateScroll = function () {
+  //       currentTime += increment;
+  //       let val = easeInOutQuad(currentTime, start, change, duration);
+  //       element.scrollTop = val;
+  //       if (currentTime < duration) {
+  //         setTimeout(animateScroll, increment);
+  //       } else {
+  //         resolve();
+  //       }
+  //     };
+  //     animateScroll();
+  //   });
+  // }
+  // scrollPageTo(document.querySelector('.content'));
+
+  // ? Finish Это новый вариант,........
+
+  // function scrollPageTo() {
+  //   return new Promise((resolve, reject) => {
+  //     if (window.scrollY === 0) {
+  //       window.scrollBy({
+  //         left: 0,
+  //         top: 350,
+  //         behavior: 'smooth',
+  //       });
+  //     } else if (window.scrollY === 350) {
+  //       window.scrollBy({
+  //       left: 0,
+  //       top: 650,
+  //       behavior: 'smooth',
+  //     });
+  //     }
+
+  //   });
+  // }
+  // scrollPageTo();
+  // scrollPageTo(document.querySelector('.parallax__subtitle-icon'), 4000);
+
+  // * training starts here
+
+  // function getNum(num) {
+  //   console.log(num);
+  //   if(num <= 5) {
+  //     setTimeout(getNum, 1000, ++num);
+  //   }
+  // }
+
+  // setTimeout(getNum, 1000, 0)
+
+  // function count(i) {
+  //   if(i === 0) {
+  //     return;
+  //   }
+  //   count(i-1)
+  //   console.log(i);
+  // }
+  // count(5)
+
+  //* training finished
+});

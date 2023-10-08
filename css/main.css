@@ -181,9 +181,9 @@ body {
   margin-bottom: 10px;
 }
 
-.content__article p:last-child {
+/* .content__article p:last-child {
   color: transparent;
-}
+} */
 
 .content__article-link {
   font-weight: 700;
