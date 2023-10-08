@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 //************************ */
 
-// Функция для плавного скроллинга до указанного элемента
+// Функция от chatGPT для плавного скроллинга до указанного элемента не рабочая
 function scrollTo(element, delay) {
   setTimeout(function() {
     window.scrollTo({
@@ -84,7 +84,7 @@ async function autoScroll() {
   while (true) {
     // Прокрутка до header, остановка на 3 секунды
     scrollTo(document.querySelector('.content'), 2000);
-    await pauseScrolling(3); // ! .then здесь нужен?
+    await pauseScrolling(3); 
 
     // Проверка, был ли скролл страницы вручную вернут наверх
     if (window.scrollY === 0) {
