@@ -181,10 +181,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* .content__article p:last-child {
-  color: transparent;
-} */
-
 .content__article-link {
   font-weight: 700;
   color: #2b228b;
@@ -243,8 +239,6 @@ body {
   }
 }
 
-
-
 @media (max-width: 720px) and (orientation: landscape) {
   .parallax__box {
     top: -26%;
@@ -301,8 +295,6 @@ body {
   }
 }
 
-
-
 @media only screen and (max-width: 990px) and (orientation: portrait) {
   .parallax__box {
     top: 21%;
@@ -327,27 +319,9 @@ body {
   }
 
   .content__article {
-    /* position: relative;
-    z-index: -1; */
+    color: #000;
   }
 }
-
-
-/* @media (max-width: 992px) and (orientation: portrait) {
-
-  .parallax__mountain-2 {
-    background-size: 104%;
-  }
-
-  .parallax__mountain-3 {
-    background-size: 220%;
-  }
-
-  .parallax__fog {
-    height: 62%;
-  }
-} */
-
 
 @media (max-width: 912px) and (orientation: portrait) {
   .parallax__box {
@@ -366,11 +340,6 @@ body {
     height: 86%;
   }
 }
-
-
-
-
-
 
 @media (max-width: 870px) and (orientation: portrait) {
   .parallax__box {
@@ -408,8 +377,6 @@ body {
   }
 }
 
-
-
 @media (max-width: 414px) and (orientation: portrait) {
 
   .parallax__box {
@@ -426,6 +393,10 @@ body {
 
   .parallax__fog {
     height: 84%;
+  }
+
+  .content__article {
+    color: #000;
   }
 }
 
@@ -446,8 +417,11 @@ body {
   .parallax__fog {
     height: 82%;
   }
-}
 
+  .content__article {
+    color: #000;
+  }
+}
 
 @media (max-width: 375px) and (orientation: portrait) {
   .parallax__box {
@@ -464,5 +438,9 @@ body {
 
   .parallax__fog {
     height: 82%;
+  }
+
+  .content__article {
+    color: #000;
   }
 }
