@@ -1,0 +1,467 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --index: calc(1vw + 1vh);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
+  line-height: 1.2;
+}
+
+.wrapper {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.parallax {
+  position: relative;
+  height: 100%;
+}
+
+.parallax__box {
+  max-width: 1170px;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  text-align: center;
+  z-index: 5;
+  opacity: 0;
+  transform: scale(.6);
+  transition: all 2s;
+
+  animation-name: opacityBlock;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-delay: 1s;
+}
+
+.show {
+  animation-name: opacityBlock;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes opacityBlock {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.parallax__title {
+  font-size: clamp(70px, 22vw, 220px);
+  font-weight: 700;
+  color: #5e5d5d;
+}
+
+.parallax__subtitle {
+  font-size: clamp(45px, 14vw, 120px);
+  color: #5e5d5d;
+}
+
+/* .parallax__subtitle-icon {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+} */
+
+/* .parallax__subtitle-icon svg {
+  width: clamp(70px, 22vw, 150px);
+  height: clamp(70px, 22vw, 150px);
+  fill: #5e5d5d;
+  opacity: 0;
+  animation-name: opacityBlock1;
+  animation-duration: 2s;
+  animation-iteration-count: 2;
+  animation-fill-mode: forwards;
+  animation-delay: 2s;
+} */
+
+.parallax__mountain {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.parallax__mountain-1 {
+  background: url('../img/mountain_fone.png') center / cover no-repeat;
+}
+
+.parallax__mountain-2 {
+  background: url('../img/mountain_right.png') bottom right / 45% no-repeat;
+  z-index: 1;
+}
+
+.parallax__mountain-3 {
+  background: url('../img/mountain_left.png') bottom left / 100% no-repeat;
+  z-index: 1;
+}
+
+.parallax__fog {
+  background: url('../img/fog.png') bottom / 100% no-repeat;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+.content {
+  position: relative;
+  top: 900px;
+}
+
+.content__body {
+  max-width: 1170px;
+  margin: 0 auto;
+}
+
+.content__header {
+  text-align: center;
+  color: #2b228b;
+  margin-bottom: calc(1vw + 1vh);
+}
+
+.content__title {
+  /* font-size: clamp(70px, 22vw, 120px); */
+  font-size: calc(var(--index) * 6)
+    /* font-size: 120px; */
+}
+
+.content__subtitle {
+  font-size: clamp(45px, 14vw, 70px);
+  font-weight: 700;
+}
+
+.content__article {
+  background-color: rgba(255, 255, 255, .4);
+  padding: clamp(10px, 3vw, 25px);
+  font-size: clamp(16px, 4vw, 18px);
+  line-height: 1.4;
+  color: #2d2929;
+}
+
+.content__article p:not(:last-child) {
+  position: relative;
+  z-index: 99;
+  margin-bottom: 10px;
+}
+
+.content__article p:last-child {
+  color: transparent;
+}
+
+.content__article-link {
+  font-weight: 700;
+  color: #2b228b;
+}
+
+/****************   Adaptive ************** */
+
+
+@media (min-width: 1224px) and (orientation: landscape) {
+  .parallax__box {
+    top: 6%;
+    transform: scale(.4);
+  }
+
+  .show {
+    transform: scale(1);
+  }
+
+  .content__article {
+    color: #000;
+  }
+}
+
+
+@media (max-width: 1180px) and (orientation: landscape) {
+  .parallax__box {
+    top: 4%;
+    transform: scale(.4);
+  }
+
+  .parallax__fog {
+    height: 98%;
+  }
+  
+
+  .show {
+    transform: scale(.8);
+  }
+
+  .content__article {
+    color: #000;
+  }
+}
+
+@media (max-width: 992px) and (orientation: landscape) {
+  .parallax__box {
+    top: -16%;
+    transform: scale(.3);
+  }
+
+  .show {
+    transform: scale(.6);
+  }
+
+  .parallax__mountain-3 {
+    background-size: 90%;
+  }
+} 
+
+
+
+@media (max-width: 720px) and (orientation: landscape) {
+  .parallax__box {
+    top: -26%;
+    transform: scale(.3);
+  }
+    
+  .show {
+    transform: scale(.5);
+  }
+
+  .parallax__mountain-3 {
+    background-size: 82%;
+  }
+}
+
+@media (width: 720px) and (orientation: landscape) {
+  .parallax__box {
+    top: 6%;
+    transform: scale(.4);
+  }
+
+  .show {
+    transform: scale(.8);
+  }
+
+  .parallax__mountain-3 {
+    background-size: 82%;
+  }
+}
+
+@media (max-width: 675px) and (orientation: landscape) {
+  .parallax__box {
+    top: -8%;
+    transform: scale(.4);
+  }
+
+  .show {
+    transform: scale(.8);
+  }
+}
+
+@media (width: 653px) and (orientation: landscape) {
+  .parallax__box {
+    top: -16%;
+    transform: scale(.3);
+  }
+
+  .show {
+    transform: scale(.5);
+  }
+
+  .parallax__mountain-3 {
+    background-size: 82%;
+  }
+}
+
+
+
+
+/* @media (min-width: 822px) and (orientation: portrait) {
+  .parallax__box {
+    top: 51%;
+    transform: scale(.3);
+    background-color: red;
+  }
+
+  .parallax__mountain-2 {
+    background-size: 104%;
+  }
+
+  .parallax__mountain-3 {
+    background-size: 220%;
+  }
+
+  .parallax__fog {
+    height: 62%;
+  }
+} */
+
+
+
+
+
+@media (max-width: 992px) and (orientation: portrait) {
+
+  .parallax__mountain-2 {
+    background-size: 104%;
+  }
+
+  .parallax__mountain-3 {
+    background-size: 220%;
+  }
+
+  .parallax__fog {
+    height: 62%;
+  }
+}
+
+
+@media (max-width: 912px) and (orientation: portrait) {
+  .parallax__box {
+    top: 20%;
+  }
+
+  .parallax__mountain-2 {
+    background-size: 62%;
+  }
+
+  .parallax__mountain-3 {
+    background-size: 156%;
+  }
+
+  .parallax__fog {
+    height: 80%;
+  }
+}
+
+
+
+@media (max-width: 870px) and (orientation: portrait) {
+  .parallax__box {
+      top: 22%;
+    }
+  
+    .parallax__mountain-2 {
+      background-size: 64%;
+    }
+  
+    .parallax__mountain-3 {
+      background-size: 154%;
+    }
+  
+    .parallax__fog {
+      height: 76%;
+    }
+}
+
+
+
+@media (max-width: 770px) and (orientation: portrait) {
+  .parallax__box {
+      top: 22%;
+    }
+  
+    .parallax__mountain-2 {
+      background-size: 52%;
+    }
+  
+    .parallax__mountain-3 {
+      background-size: 128%;
+    }
+  
+    .parallax__fog {
+      height: 84%;
+    }
+}
+
+
+
+@media (max-width: 414px) and (orientation: portrait) {
+
+  .parallax__box {
+    top: 36%;
+  }
+
+  .parallax__mountain-2 {
+    background-size: 58%;
+  }
+
+  .parallax__mountain-3 {
+    background-size: 156%;
+  }
+
+  .parallax__fog {
+    height: 84%;
+  }
+}
+@media (max-width: 396px) and (orientation: portrait) {
+
+  .parallax__box {
+    top: 36%;
+  }
+
+  .parallax__mountain-2 {
+    background-size: 56%;
+  }
+
+  .parallax__mountain-3 {
+    background-size: 156%;
+  }
+
+  .parallax__fog {
+    height: 82%;
+  }
+}
+
+
+
+@media (max-width: 375px) and (orientation: portrait) {
+  .parallax__box {
+    top: 36%;
+  }
+
+  .parallax__mountain-2 {
+    background-size: 52%;
+  }
+
+  .parallax__mountain-3 {
+    background-size: 134%;
+  }
+
+  .parallax__fog {
+    height: 82%;
+  }
+}
+
+
+
+
