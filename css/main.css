@@ -19,6 +19,7 @@ body {
 body {
   font-family: 'Nunito Sans', sans-serif;
   line-height: 1.2;
+  font-weight: 500;
 }
 
 .wrapper {
@@ -168,11 +169,12 @@ body {
 }
 
 .content__article {
-  background-color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, .7);
   padding: clamp(10px, 3vw, 25px);
   font-size: clamp(16px, 4vw, 18px);
-  line-height: 1.4;
-  color: #2d2929;
+  line-height: 1.6;
+  color: #000;
+  text-indent: 1.2em;
 }
 
 .content__article p:not(:last-child) {
