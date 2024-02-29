@@ -118,21 +118,21 @@ body {
 }
 
 .parallax__mountain-1 {
-  background: url('../img/mountain_fone.png') center / cover no-repeat;
+  background: url('../img/mountain_fone1.png') center / cover no-repeat;
 }
 
 .parallax__mountain-2 {
-  background: url('../img/mountain_right.png') bottom right / 45% no-repeat;
+  background: url('../img/mountain_right1.png') bottom right / 45% no-repeat;
   z-index: 1;
 }
 
 .parallax__mountain-3 {
-  background: url('../img/mountain_left.png') bottom left / 100% no-repeat;
+  background: url('../img/mountain_left1.png') bottom left / 100% no-repeat;
   z-index: 1;
 }
 
 .parallax__fog {
-  background: url('../img/fog.png') bottom / 100% no-repeat;
+  background: url('../img/fog1.png') bottom / 100% no-repeat;
   position: fixed;
   height: 100%;
   width: 100%;
